@@ -6,11 +6,11 @@ namespace VotingCalculator
 {
 	class Party
 	{
-		public string m_name;
-		public int m_iVotes;
-		public int m_iAppliedSeats;
+		public readonly string m_name;
+		public readonly int m_iVotes;
+		public readonly int m_iAppliedSeats;
 
-		private string m_shortName;
+		private readonly string m_shortName;
 		
 		public Party(string name, string shortName, int votes, int appliedSeats)
 		{
@@ -19,5 +19,11 @@ namespace VotingCalculator
 			m_iVotes = votes;
 			m_iAppliedSeats = appliedSeats;
 		}
+#if DEBUG
+		public override string ToString()
+		{
+			return String.Format("Party Name: {0}; Short Name: {1}; Votes: {2}; Applied Seats: {3};", m_name, m_shortName, m_iVotes, m_iAppliedSeats);
+		}
+#endif
 	}
 }
