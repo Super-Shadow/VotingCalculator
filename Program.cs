@@ -34,6 +34,25 @@ namespace VotingCalculator
 				Parties.Add(party);
 			}
 
+			while(iAvailableSeats > 0)
+			{
+				Party winningParty = null;
+				int iHighestVotes = 0;
+
+				foreach (Party party in Parties)
+				{
+					if (party.m_iVotes > iHighestVotes)
+					{
+						iHighestVotes = party.m_iVotes;
+						winningParty = party;
+					}
+				}
+				winningParty.m_iSeatsClaimed++;
+				if(iAvailableSeats != 5) // Round 1 there is no division
+					winningParty.m_iVotes /= (1 + winningParty.m_iSeatsClaimed);
+
+				iAvailableSeats--;
+			}
 #if DEBUG
 			Console.WriteLine(constituency);
 			Console.WriteLine("Total votes: {0}", iTotalVotes);
