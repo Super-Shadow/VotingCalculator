@@ -12,7 +12,7 @@ namespace VotingCalculator
 		public readonly string m_name;
 		public readonly int m_iAppliedSeats;
 
-		private readonly string m_shortName;
+		public readonly string m_shortName;
 
 		public Party(string name, string shortName, int votes, int appliedSeats)
 		{
