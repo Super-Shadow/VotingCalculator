@@ -9,7 +9,7 @@ namespace VotingCalculator
 
 		static void Main(string[] args)
 		{
-			// Preset variable values, set the path of the party data.
+			// Preset variable values, set the path of the party data, as well as file to write to.
 			int iAvailableSeats = 0;
 			int iTotalVotes = 0;
 			string constituency = "";
@@ -56,32 +56,26 @@ namespace VotingCalculator
 				iAvailableSeats--;
 			}
 
-			List<string> linesToWrite = new List<string>();
-			linesToWrite.Add("#East Midlands (European Parliment Constituency)");
-			string partyLine;
-			foreach(Party p in Parties)
+			List<string> linesToWrite = new List<string>(); // Create an empty list which will be used to store the lines written to storage.
+			linesToWrite.Add("#East Midlands (European Parliment Constituency)"); // Add basic formatting to first line
+			string partyLine;                                                     // empty string used in creation of each line
+			foreach(Party p in Parties) // For each party..
 			{
-				if (p.m_iSeatsClaimed >= 1)
+				if (p.m_iSeatsClaimed >= 1)  // If the party has more then 1 seat..
 				{
+					// Format as such:  Party Name, Seat1, Seat2... 
 					partyLine = p.m_name;
-					for (int i = 1; i <= p.m_iSeatsClaimed; i++)
+					for (int i = 1; i <= p.m_iSeatsClaimed; i++)  // For each seat the party has..
 					{
 						partyLine = partyLine + "," + p.m_shortName + i;
 					}
 					partyLine += ";";
-					linesToWrite.Add(partyLine);
+					linesToWrite.Add(partyLine);  // Add the line to the list of lines.
 				}
 			}
 
-			try
-			{
-				File.WriteAllLines(store, linesToWrite);
-			}
-			catch
-			{
-				throw new FileNotFoundException("No file was found to write to, could not output results.");
-			}
-			
+			// Write data to file.
+			File.WriteAllLines(store, linesToWrite);
 
 #if DEBUG
 			Console.WriteLine(constituency);
