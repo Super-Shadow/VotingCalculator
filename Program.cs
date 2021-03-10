@@ -22,7 +22,7 @@ namespace VotingCalculator
 			}
 			catch
 			{
-				throw new FileNotFoundException("Please place Assessment1Data.txt in the same folder as the program.");
+				throw new FileNotFoundException("Please place Assessment1Data.txt in the same directory as the executable.");
 			}
 
 			constituency = lines[0];
@@ -57,7 +57,7 @@ namespace VotingCalculator
 			}
 
 			List<string> linesToWrite = new List<string>(); // Create an empty list which will be used to store the lines written to storage.
-			linesToWrite.Add("#East Midlands (European Parliment Constituency)"); // Add basic formatting to first line
+			linesToWrite.Add(constituency); // Add constituency found in input file to first line
 			string partyLine;                                                     // empty string used in creation of each line
 			foreach(Party p in Parties) // For each party..
 			{
