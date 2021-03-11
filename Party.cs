@@ -25,10 +25,8 @@ namespace VotingCalculator
 		// Method Name: claimSeat
 		// Arguments: int iRound
 		// Returns: void
-		// Desc: Takes in a List of Party objects and integer representing the max
-		//		 seats that are available to be claimed. The Dhond't system is then
-		//		 applied to list, which specifies which parties can claim a seat.
-		//		 Returns a List containing each party that claimed a seat.
+		// Desc: Increases the seats this party has claimed. Also has specific functionality
+		//		 if it is the first round of a dhon't system.
 		//------------------------------
 		public void claimSeat(int iRound)
 		{
